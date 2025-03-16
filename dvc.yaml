@@ -1,7 +1,8 @@
 stages:
   get_data:
-    cmd: dvc import https://github.com/NovikovIE/mushroom-classification data/mushrooms.dvc -o data/mushrooms
+    cmd: dvc import https://github.com/NovikovIE/mushroom-classification mushrooms.dvc -o data/mushrooms
     deps:
-      - https://github.com/NovikovIE/mushroom-classification
+      - mushrooms.dvc
     outs:
       - data/mushrooms
+  
