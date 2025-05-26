@@ -1,0 +1,22 @@
+name: "trt"
+platform: "tensorrt_plan"
+max_batch_size: 32
+
+input [{
+    name: "input"
+    data_type: TYPE_FP32
+    dims: [3, 224, 224]
+}]
+
+output [{
+    name: "output"
+    data_type: TYPE_FP32
+    dims: [589]
+}]
+
+dynamic_batching {
+    preferred_batch_size: [16, 32]
+    max_queue_delay_microseconds: 1000
+}
+
+version_policy: { all { }}

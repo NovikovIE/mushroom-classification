@@ -1,0 +1,4 @@
+_target_: models.efficient_net.EfficientNetModel
+# model_name: ${model.model_name}
+# num_classes: ${model.num_classes}
+# toxicity_classes: ${model.toxicity_classes}

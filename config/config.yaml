@@ -1,0 +1,26 @@
+defaults:
+  - _self_
+  - model: efficient_net
+  - data: default
+  - trainer: default
+  - optimizer: adamw
+
+model:
+  num_classes: 589
+  model_name: "efficientnet_b4"
+  penalty_weight: 1.0
+
+mlflow:
+  tracking_uri: "http://127.0.0.1:8080"
+
+export:
+  onnx_path: "triton/export/onnx/model.onnx"
+  fp16: True
+
+checkpoint:
+  dirpath: "./checkpoints"
+
+model_path: model_path
+image_path: image_path
+class_to_category_path: class_to_category_path
+class_to_name_path: class_to_name_path
