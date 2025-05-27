@@ -11,11 +11,15 @@ Metrics:
 - Accuracy for 4 poisonous categories
 - F1 score for 4 poisonous categories
 
+Baseline model is simple convolutional neural network.
+
 Main model is EfficientNet B4 with a custom head.
 
 Dataset:
 
 - [Mushrooms](https://www.kaggle.com/datasets/zedsden/mushroom-classification-dataset)
+- Data is split into train, val and test sets based on names sorting and ratios
+  70%, 15%, 15%.
 
 ## Setup
 

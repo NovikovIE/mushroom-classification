@@ -1,5 +1,4 @@
 import os
-import random
 import re
 import shutil
 import subprocess
@@ -59,18 +58,21 @@ def split_species_images(species_dir, output_dir, train_ratio, val_ratio, test_r
         return
 
     files_with_numbers = []
+    files_without_numbers = []
     for f in all_files:
         numbers = re.findall(r"\d+", f)
         if numbers:
             number = int(numbers[-1])
             files_with_numbers.append((f, number))
         else:
-            files_with_numbers.append((f, random.randint(0, 1000000)))
+            files_without_numbers.append(f)
 
     files_with_numbers.sort(key=lambda x: x[1])
-    sorted_files, _ = (
-        zip(*files_with_numbers, strict=True) if files_with_numbers else ([], [])
-    )
+    sorted_with_numbers = [f for f, _ in files_with_numbers]
+
+    files_without_numbers.sort()
+
+    sorted_files = sorted_with_numbers + files_without_numbers
 
     num_files = len(sorted_files)
     train_end = int(train_ratio * num_files)
@@ -110,7 +112,19 @@ def split_data(data_dir, output_dir, train_ratio=0.7, val_ratio=0.15, test_ratio
                     )
 
 
+def move_dirs(data_dir):
+    for class_name in os.listdir(os.path.join(data_dir, "mushroom_dataset/Classes")):
+        class_path = os.path.join(data_dir, "mushroom_dataset/Classes", class_name)
+        if os.path.isdir(class_path):
+            dest_path = os.path.join(data_dir, class_name)
+            shutil.move(class_path, dest_path)
+            print(f"Moved {class_path} to {dest_path}")
+
+
 def prepare_data(data_dir, output_dir):
+    move_dirs(data_dir)
+    shutil.rmtree(os.path.join(data_dir, "mushroom_dataset"))
+
     conditionally_edible_dir = os.path.join(data_dir, "conditionally_edible")
     flatten_directory(conditionally_edible_dir)
 
