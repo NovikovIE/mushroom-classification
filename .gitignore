@@ -128,12 +128,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/
+data/*
 !*.dvc
 checkpoints/*
 lightning_logs/*
 mlruns/*
-/data
 plots/*
 outputs/*
 
