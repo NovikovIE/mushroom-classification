@@ -37,6 +37,8 @@ Dataset:
 - Data is split into train, val and test sets based on names sorting and ratios
   70%, 15%, 15%.
 
+if you need model artifacts, you can download them from [here](https://disk.yandex.ru/d/sggUnx6xDcYQSA)
+
 ## Setup
 
 1. Install
