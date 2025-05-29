@@ -97,6 +97,7 @@ class MushroomClassifier(pl.LightningModule):
         total_loss = loss + penalty
 
         self.train_acc(logits, species_labels)
+        self.train_f1(logits, species_labels)
 
         pred_species = logits.argmax(dim=1)
         pred_cats = self.species_to_category[pred_species]
@@ -108,6 +109,7 @@ class MushroomClassifier(pl.LightningModule):
 
         self.log("train_loss", total_loss, on_step=True, on_epoch=True, prog_bar=True)
         self.log("train_acc", self.train_acc, on_step=True, on_epoch=True, prog_bar=True)
+        self.log("train_f1", self.train_f1, on_step=True, on_epoch=True, prog_bar=True)
         self.log(
             "train_group_acc",
             self.train_group_acc,
@@ -135,6 +137,7 @@ class MushroomClassifier(pl.LightningModule):
         total_loss = loss + penalty
 
         self.val_acc(logits, species_labels)
+        self.val_f1(logits, species_labels)
 
         pred_species = logits.argmax(dim=1)
         pred_cats = self.species_to_category[pred_species]
@@ -146,6 +149,7 @@ class MushroomClassifier(pl.LightningModule):
 
         self.log("val_loss", total_loss, on_epoch=True, prog_bar=True)
         self.log("val_acc", self.val_acc, on_epoch=True, prog_bar=True)
+        self.log("val_f1", self.val_f1, on_epoch=True, prog_bar=True)
         self.log("val_group_acc", self.val_group_acc, on_epoch=True, prog_bar=True)
         self.log("val_group_f1", self.val_group_f1, on_epoch=True, prog_bar=True)
 
@@ -159,6 +163,7 @@ class MushroomClassifier(pl.LightningModule):
         total_loss = loss + penalty
 
         self.test_acc(logits, species_labels)
+        self.test_f1(logits, species_labels)
 
         pred_species = logits.argmax(dim=1)
         pred_cats = self.species_to_category[pred_species]
@@ -170,6 +175,7 @@ class MushroomClassifier(pl.LightningModule):
 
         self.log("test_loss", total_loss)
         self.log("test_acc", self.test_acc)
+        self.log("test_f1", self.test_f1)
         self.log("test_group_acc", self.test_group_acc)
         self.log("test_group_f1", self.test_group_f1)
 

@@ -4,6 +4,13 @@ This repository contains the code for the Mushroom Classification project.
 
 The goal of this project is to classify mushrooms based on their images.
 
+Classification is on 589 classes. Also all classes are divided into 4 groups:
+
+- edible
+- conditionally edible
+- poisonous
+- deadly
+
 Metrics:
 
 - Accuracy
@@ -13,7 +20,16 @@ Metrics:
 
 Baseline model is simple convolutional neural network.
 
-Main model is EfficientNet B4 with a custom head.
+Final model (finetuned EfficientNet B4 with a custom head) shows following
+performance on test set:
+
+- Accuracy: 0.75
+- F1 score: 0.47
+- Accuracy for 4 poisonous categories: 0.95
+- F1 score for 4 poisonous categories: 0.89
+
+Training loss is crossentropy + penalty loss (penalty is on missclassification
+of poisonous classes).
 
 Dataset:
 
