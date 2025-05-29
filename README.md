@@ -37,7 +37,8 @@ Dataset:
 - Data is split into train, val and test sets based on names sorting and ratios
   70%, 15%, 15%.
 
-if you need model artifacts, you can download them from [here](https://disk.yandex.ru/d/sggUnx6xDcYQSA)
+if you need model artifacts, you can download them from
+[here](https://disk.yandex.ru/d/sggUnx6xDcYQSA)
 
 ## Setup
 
@@ -50,6 +51,9 @@ poetry install
 ```
 
 optional: set conda environment
+
+Also for downloading data you need to get kaggle api token and put it to
+~/.kaggle/kaggle.json
 
 ## Train
 
