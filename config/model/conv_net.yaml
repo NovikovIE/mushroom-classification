@@ -1,0 +1,2 @@
+_target_: models.conv_net.ConvNet
+# num_classes: ${model.num_classes}

@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  triton:
+    command: "tritonserver --model-repository=/models --log-info=1"
+    runtime: nvidia
+    build:
+      context: .
+      network: host
+    shm_size: "64gb"
+    ports:
+      - 8900:8000
+      - 8901:8001
+      - 8902:8002
+    volumes:
+      - ./:/workspace
+      - ./model_repository:/models
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    deploy:
+      resources:
+        limits:
+          cpus: "8"
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]

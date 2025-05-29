@@ -1,0 +1,19 @@
+name: "image_preprocessor"
+backend: "python"
+max_batch_size: 0
+
+input [
+  {
+    name: "input_image"
+    data_type: TYPE_UINT8
+    dims: [ -1 ]
+  }
+]
+
+output [
+  {
+    name: "processed_tensor"
+    data_type: TYPE_FP32
+    dims: [ 3, 224, 224 ]
+  }
+]
